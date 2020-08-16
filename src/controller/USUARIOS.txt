@@ -1,0 +1,17 @@
+USUARIO 1
+{
+  "id": 626894855,
+  "nickname": "TETE27267",
+  "password": "qatest386",
+  "site_status": "active",
+  "email": "test_user_80234215@testuser.com"
+}
+
+USUARIO 2
+{
+  "id": 626896538,
+  "nickname": "TESTAPWUYPWC",
+  "password": "qatest7235",
+  "site_status": "active",
+  "email": "test_user_53999180@testuser.com"
+}

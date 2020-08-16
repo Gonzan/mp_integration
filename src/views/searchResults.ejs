@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <% results.map( product => { %>
+     <article>
+        <a href="/products/detail/<%= product.id %> ">
+            <h2><%= product.title %> </h2>
+        </a>
+     </article>
+    <% }) %>
+</body>
+</html>
