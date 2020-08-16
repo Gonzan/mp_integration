@@ -44,12 +44,12 @@ module.exports = {
 
         var payment_data = {
         transaction_amount: 165,
-        token: 'ff8080814c11e237014c1ff593b57b4d',
-        description: 'Small Rubber Computer',
-        installments: 1,
-        payment_method_id: 'visa',
+        token: req.body.token,
+        description: req.body.description,
+        installments: req.body.installments,
+        payment_method_id: req.body.payment_method_id,
         payer: {
-            email: 'test@test.com'
+            email: req.body.email
         }
         };
 

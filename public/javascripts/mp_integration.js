@@ -78,7 +78,7 @@ function sdkResponseHandler(status, response) {
         card.setAttribute('value', response.id);
         form.appendChild(card);
         doSubmit=true;
-        // form.submit();
+        form.submit();
         console.log(form,status);
     }
 };
