@@ -69,9 +69,9 @@ module.exports = {
             body += chunk.toString();
           });
           req.on("end", () => {  
-            res.json(body)         
+            // res.json(body)         
             console.log(body, "webhook response"); 
-            // res.end("ok");
+            res.end("ok");
           });
         }
         return res.status(200); 
