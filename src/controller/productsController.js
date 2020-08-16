@@ -75,7 +75,7 @@ module.exports = {
         //   });
         // }
         const payload =  req
-        res.status(200).render(payload); 
+        res.status(200).render('payload',{payload}); 
       }
     
 }
