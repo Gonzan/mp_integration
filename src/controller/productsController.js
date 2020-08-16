@@ -46,7 +46,7 @@ module.exports = {
         transaction_amount: 165,
         token: req.body.token,
         description: req.body.description,
-        installments: Numbre(req.body.installments),
+        installments: Number(req.body.installments),
         payment_method_id: req.body.payment_method_id,
         payer: {
             email: req.body.email
