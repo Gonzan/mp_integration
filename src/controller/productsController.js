@@ -74,7 +74,8 @@ module.exports = {
         //     res.end("ok");
         //   });
         // }
-        res.json(req.body); 
+        const payload =  req
+        res.status(200).render(payload); 
       }
     
 }
