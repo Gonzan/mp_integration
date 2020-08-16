@@ -56,7 +56,7 @@ module.exports = {
 
         mercadopago.payment.save(payment_data).then(function (data) {
            
-            res.json(data);
+            // res.json(data);
             }).catch(function (error) {
             res.json(error.message);
             });
@@ -69,9 +69,9 @@ module.exports = {
             body += chunk.toString();
           });
           req.on("end", () => {  
-            fs.writeFileSync('./hook.txt',body)           
+            res.json(body)         
             console.log(body, "webhook response"); 
-            res.end("ok");
+            // res.end("ok");
           });
         }
         return res.status(200); 
