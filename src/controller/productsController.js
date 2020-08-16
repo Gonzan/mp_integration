@@ -1,5 +1,6 @@
 var mercadopago = require('mercadopago');
 const  axios  = require("axios")
+const fs = require('fs')
 module.exports = {
     search: async (req,res)=> {
         const search = req.query.q
@@ -68,6 +69,7 @@ module.exports = {
             body += chunk.toString();
           });
           req.on("end", () => {  
+            fs.writeFileSync('./hook.txt',body)           
             console.log(body, "webhook response"); 
             res.end("ok");
           });
