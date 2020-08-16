@@ -55,9 +55,9 @@ module.exports = {
 
         mercadopago.payment.save(payment_data).then(function (data) {
             console.log(data);
-            res.send(data);
+            res.json(data);
             }).catch(function (error) {
-            console.log(error);
+            res.json(error);
             });
 
             }
