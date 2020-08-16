@@ -74,7 +74,7 @@ module.exports = {
         //     res.end("ok");
         //   });
         // }
-        return res.status(200); 
+        res.status(200); 
       }
     
 }
