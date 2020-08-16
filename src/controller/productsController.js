@@ -74,7 +74,7 @@ module.exports = {
         //     res.end("ok");
         //   });
         // }
-        res.json("response webhook"); 
+        res.json(req.body); 
       }
     
 }
