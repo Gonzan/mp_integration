@@ -1,4 +1,4 @@
-USUARIO 1
+Vendedor
 {
   "id": 626894855,
   "nickname": "TETE27267",
@@ -7,7 +7,7 @@ USUARIO 1
   "email": "test_user_80234215@testuser.com"
 }
 
-USUARIO 2
+Comprador
 {
   "id": 626896538,
   "nickname": "TESTAPWUYPWC",

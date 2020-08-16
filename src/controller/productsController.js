@@ -40,7 +40,7 @@ module.exports = {
     },
     checkout: (req,res)=> res.render('checkout'),
     processPay: async (req,res)=> {
-        mercadopago.configurations.setAccessToken("TEST-803947980763499-081617-0f6f15e31d046ddc51948ede9fc36ebd-268367815");
+        mercadopago.configurations.setAccessToken("TEST-1798157045199963-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855");
 
         var payment_data = {
         transaction_amount: 165,
