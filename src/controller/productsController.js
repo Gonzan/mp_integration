@@ -40,7 +40,7 @@ module.exports = {
     },
     checkout: (req,res)=> res.render('checkout'),
     processPay: async (req,res)=> {
-        mercadopago.configurations.setAccessToken("TEST-1798157045199963-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855");
+       await mercadopago.configurations.setAccessToken("TEST-1798157045199963-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855");
 
         var payment_data = {
         transaction_amount: 165,
@@ -54,10 +54,10 @@ module.exports = {
         };
 
         mercadopago.payment.save(payment_data).then(function (data) {
-            console.log(data);
+           
             res.json(data);
             }).catch(function (error) {
-            res.json(error);
+            res.json(error.message);
             });
 
             }
