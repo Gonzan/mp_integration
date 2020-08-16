@@ -63,17 +63,17 @@ module.exports = {
 
     },
     webhook: (req, res) => { 
-        if (req.method === "POST") { 
-          let body = ""; 
-          req.on("data", chunk => {  
-            body += chunk.toString();
-          });
-          req.on("end", () => {  
-            // res.json(body)         
-            console.log(body, "webhook response"); 
-            res.end("ok");
-          });
-        }
+        // if (req.method === "POST") { 
+        //   let body = ""; 
+        //   req.on("data", chunk => {  
+        //     body += chunk.toString();
+        //   });
+        //   req.on("end", () => {  
+        //     // res.json(body)         
+        //     console.log(body, "webhook response"); 
+        //     res.end("ok");
+        //   });
+        // }
         return res.status(200); 
       }
     
