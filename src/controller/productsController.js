@@ -60,9 +60,7 @@ module.exports = {
             mercadopago.payment.save(preference).then(function (payment) {
                 res.json(payment)
         }).catch(function (error) {
-            res.render('500', {
-              error: error
-            });
+            res.json(error.message);
           });
     //    await mercadopago.configurations.setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
