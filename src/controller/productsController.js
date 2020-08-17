@@ -1,5 +1,5 @@
 var mercadopago = require('mercadopago');
-mercadopago.configurations.setAccessToken("APP_USR-1798157045199963-081618-2b165fae4e0cd5a93e60d99b13f9a662-626894855");
+mercadopago.configurations.setAccessToken("TEST-1798157045199963-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855");
 
   
 const  axios  = require("axios")
