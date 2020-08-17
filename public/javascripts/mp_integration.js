@@ -1,5 +1,5 @@
 console.log('OKI');
-window.Mercadopago.setPublishableKey("TEST-c2995a07-6a03-40e3-81e2-fb6c27b26906");
+window.Mercadopago.setPublishableKey("APP_USR-7eb0138a-189f-4bec-87d1-c0504ead5626");
 // Tipos de documento
 window.Mercadopago.getIdentificationTypes();
 
@@ -8,18 +8,26 @@ document.getElementById('cardNumber').addEventListener('change', guessPaymentMet
 
 function guessPaymentMethod(event) {
     let cardnumber = document.getElementById("cardNumber").value;
-
+    
     if (cardnumber.length >= 6) {
         let bin = cardnumber.substring(0,6);
         window.Mercadopago.getPaymentMethod({
             "bin": bin
-        }, setPaymentMethod);
+        }, testPaymentMethod);
     }
 };
-
+function testPaymentMethod(status,response) {
+    console.log(status,response);
+    if (response[0].id != 'amex') {
+        setPaymentMethod(status, response)
+    } else {
+        alert('no podes pagar con amex')
+    }
+}
 function setPaymentMethod(status, response) {
     if (status == 200) {
         let paymentMethodId = response[0].id;
+        console.log(response);
         let element = document.getElementById('payment_method_id');
         element.value = paymentMethodId;
         getInstallments();
@@ -38,10 +46,13 @@ function getInstallments(){
     }, function (status, response) {
         if (status == 200) {
             document.getElementById('installments').options.length = 0;
-            response[0].payer_costs.forEach( installment => {
-                let opt = document.createElement('option');
-                opt.text = installment.recommended_message;
-                opt.value = installment.installments;
+            
+            response[0].payer_costs.slice(0,3).forEach( installment => {
+                
+                    let opt = document.createElement('option');
+                    opt.text = installment.recommended_message;
+                    opt.value = installment.installments;
+                
                 document.getElementById('installments').appendChild(opt);
             });
         } else {
@@ -79,6 +90,5 @@ function sdkResponseHandler(status, response) {
         form.appendChild(card);
         doSubmit=true;
         form.submit();
-        console.log(form,status);
     }
 };
