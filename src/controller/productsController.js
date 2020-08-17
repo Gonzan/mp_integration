@@ -1,8 +1,9 @@
 var mercadopago = require('mercadopago');
+mercadopago.configurations.setAccessToken("APP_USR-1798157045199963-081618-2b165fae4e0cd5a93e60d99b13f9a662-626894855");
 
   
 const  axios  = require("axios")
-const fs = require('fs')
+
 module.exports = {
     search: async (req,res)=> {
         const search = req.query.q
@@ -44,7 +45,6 @@ module.exports = {
     checkout: (req,res)=> res.render('checkout'),
     processPay: async (req,res)=> {      
 
-       await mercadopago.configurations.setAccessToken("APP_USR-1798157045199963-081618-2b165fae4e0cd5a93e60d99b13f9a662-626894855");
 
         var payment_data = {
         // id:1,
