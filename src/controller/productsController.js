@@ -61,27 +61,15 @@ module.exports = {
 
         mercadopago.payment.save(payment_data).then(function (data) {
            
-            // res.json(data);
+            res.json(data);
             }).catch(function (error) {
             res.json(error.message);
             });
 
     },
     webhook: (req, res) => { 
-        // if (req.method === "POST") { 
-        //   let body = ""; 
-        //   req.on("data", chunk => {  
-        //     body += chunk.toString();
-        //   });
-        //   req.on("end", () => {  
-        //     // res.json(body)         
-        //     console.log(body, "webhook response"); 
-        //     res.end("ok");
-        //   });
-        // }
         console.log("webhook");
-        const payload =  req
-        res.status(200).render('payload',{payload}); 
+        res.status(200); 
       }
     
 }
