@@ -1,4 +1,9 @@
 var mercadopago = require('mercadopago');
+mercadopago.configure({
+    sandbox: true,
+    access_token: "TEST-1798157045199963-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855"
+  });
+  
 const  axios  = require("axios")
 const fs = require('fs')
 module.exports = {
@@ -74,6 +79,7 @@ module.exports = {
         //     res.end("ok");
         //   });
         // }
+        console.log("webhook");
         const payload =  req
         res.status(200).render('payload',{payload}); 
       }
