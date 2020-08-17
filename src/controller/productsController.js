@@ -58,7 +58,6 @@ module.exports = {
         payment_method_id: req.body.payment_method_id,
         external_reference:'gonzalo@digitalhouse.com',
         payer: {
-            id:'471923173',
             email: req.body.email
         },
         // integrator_id:'dev_24c65fb163bf11ea96500242ac130004',
