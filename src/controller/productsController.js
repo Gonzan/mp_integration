@@ -89,7 +89,7 @@ module.exports = {
     //         res.json(data);
     //         }).catch(function (error) {
     //         res.json(error.message);
-    //         });
+            });
 
     },
     webhook: (req, res) => { 
