@@ -1,7 +1,7 @@
 var mercadopago = require('mercadopago');
-mercadopago.configure({
-    access_token: "APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398"
-  });
+// mercadopago.configure({
+//     access_token: "APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398"
+//   });
   
 const  axios  = require("axios")
 const fs = require('fs')
@@ -45,7 +45,7 @@ module.exports = {
     },
     checkout: (req,res)=> res.render('checkout'),
     processPay: async (req,res)=> {
-       await mercadopago.configurations.setAccessToken("TEST-APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855");
+       await mercadopago.configurations.setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
         var payment_data = {
         id:1,
