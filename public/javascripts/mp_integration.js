@@ -1,5 +1,5 @@
 console.log('OKI');
-window.Mercadopago.setPublishableKey("APP_USR-7eb0138a-189f-4bec-87d1-c0504ead5626");
+window.Mercadopago.setPublishableKey("APP_USR-0fe2e907-ddd5-4613-971b-dd6c8ae70b6c");
 // Tipos de documento
 window.Mercadopago.getIdentificationTypes();
 
