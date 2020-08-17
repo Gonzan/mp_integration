@@ -48,13 +48,13 @@ module.exports = {
        await mercadopago.configurations.setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
         var payment_data = {
-        id:1,
+        // id:1,
         transaction_amount: 165,
-        name:'producto test',
+        // name:'producto test',
         token: req.body.token,
-        cuantity:1,
+        // cuantity:1,
         description: req.body.description,
-        picture_url:"https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
+        // picture_url:"https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
         installments: Number(req.body.installments),
         payment_method_id: req.body.payment_method_id,
         external_reference:'gonzalo@digitalhouse.com',
@@ -62,7 +62,7 @@ module.exports = {
             id:'471923173',
             email: req.body.email
         },
-        integrator_id:'dev_24c65fb163bf11ea96500242ac130004',
+        // integrator_id:'dev_24c65fb163bf11ea96500242ac130004',
         };
 
         mercadopago.payment.save(payment_data).then(function (data) {
