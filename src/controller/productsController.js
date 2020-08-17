@@ -47,18 +47,19 @@ module.exports = {
     processPay: async (req,res)=> {
         var preference = {
             items: [
-              {
-                title: 'Test',
-                quantity: 1,
-                currency_id: 'ARS',
-                unit_price: 10.5
-              }
+                {
+                    title: 'Test',
+                    quantity: 1,
+                    currency_id: 'ARS',
+                    unit_price: 10.5
+                }
             ]
-          };
+        };
         
-          mercadopago.preferences.create(preference).then(function (data) {
-            res.json(data);
-          }).catch(function (error) {
+        mercadopago.preferences.create(preference).then(function (data) {
+            mercadopago.payment.save(preference).then(function (payment) {
+                res.json(payment)
+        }).catch(function (error) {
             res.render('500', {
               error: error
             });
