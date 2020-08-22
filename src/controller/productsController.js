@@ -77,7 +77,7 @@ module.exports = {
                     ],
                     "installments": 6
                 },
-                "notification_url": "http://localhost:3000/products/webhook",
+                "notification_url": "https://mpintegrationdh.herokuapp.com/products/webhook",
                 "external_reference": "GonzaDH",
         };
         
