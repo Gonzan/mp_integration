@@ -17,10 +17,16 @@
             <span><%= condition %> </span>
             <span><%= sold_quantity %> </span>
             <section>
-                <form action="">
-                    <input type="number" name="" id="">
-                    <button type="submit">COMPRAR</button>
-                </form>
+               
+
+        <form method="POST">
+            <script
+            src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+            data-preference-id='<%= global.id %>'>
+            </script>
+            <button type="submit">Pagar</button>
+        </form>
+  
             </section>
         </article>
     </section>

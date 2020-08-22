@@ -1,6 +1,7 @@
 var mercadopago = require('mercadopago');
-mercadopago.configurations.setAccessToken("TEST-1798157045199963-081618-f88da422e52b3c598d936ff2c1bd6b22-626894855");
-
+mercadopago.configure({
+    access_token: 'APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398'
+  });
   
 const  axios  = require("axios")
 
@@ -42,7 +43,72 @@ module.exports = {
         }
         
     },
-    checkout: (req,res)=> res.render('checkout'),
+    checkout: (req,res)=> {
+        var preference = {
+                "items": [
+                    {
+                        "id": "item-ID-1234",
+                        "title": "Mi producto",
+                        "currency_id": "ARS",
+                        "picture_url": "https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
+                        "description": "Descripción del Item",
+                        "category_id": "art",
+                        "quantity": 1,
+                        "unit_price": 75.76
+                    }
+                ],
+                "payer": {
+                    "name": "Juan",
+                    "surname": "Lopez",
+                    "email": "user@email.com",
+                    "phone": {
+                        "area_code": "11",
+                        "number": "4444-4444"
+                    },
+                    "identification": {
+                        "type": "DNI",
+                        "number": "12345678"
+                    },
+                    "address": {
+                        "street_name": "Street",
+                        "street_number": 123,
+                        "zip_code": "5700"
+                    }
+                },
+                "back_urls": {
+                    "success": "https://www.success.com",
+                    "failure": "http://www.failure.com",
+                    "pending": "http://www.pending.com"
+                },
+                "auto_return": "approved",
+                "payment_methods": {
+                    "excluded_payment_methods": [
+                        {
+                            "id": ""
+                        }
+                    ],
+                    "excluded_payment_types": [
+                        {
+                            "id": ""
+                        }
+                    ],
+                    "installments": 6
+                },
+                "notification_url": "",
+                "external_reference": "Reference_1234",
+                "expires": false,
+                "expiration_date_from": "",
+                "expiration_date_to": ""   
+          };
+        
+          mercadopago.preferences.create(preference)
+          .then(function (data) {
+            global.id = response.body.id;
+            res.redirect(data.sandbox_init_point);
+          }).catch(function (error) {
+            res.send(error.message);
+          });
+    },
     processPay: async (req,res)=> {      
 
 
