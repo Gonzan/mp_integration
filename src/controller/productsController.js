@@ -58,7 +58,7 @@ module.exports = {
                         "unit_price": 75.76
                     }
                 ],
-                "auto_return": "approved",
+                // "auto_return": "approved",
                 "back_urls": {
                     "success": "https://www.google.com",
                     "failure": "http://www.failure.com",
