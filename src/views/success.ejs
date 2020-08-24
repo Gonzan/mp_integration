@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (locals.payments) { %>
+       <h3> Tu pago esta <%= payments.collection_status %></h3> 
+       <h3>Payment collection_id :<%= payments.collection_id %></h3>
+       <h3>External reference :<%= payments.external_reference %></h3>
+    <% } %>
+      
+</body>
+</html>

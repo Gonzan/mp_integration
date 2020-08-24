@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
     <title>Detail</title>
@@ -9,22 +10,14 @@
 <body>
     <section>
         <picture>
-
+            <img src="<%= pictures[0].url %> " alt="product_image">
         </picture>
         <article>
             <h2><%= title %> </h2>
             <span><%= condition %> </span>
             <span><%= sold_quantity %> </span>
             <section>
-               
-
-        <!-- <form method="POST">
-            <script
-            src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-            data-preference-id='<%= global.id %>'>
-            </script>
-        </form> -->
-        <a href="<%= init_point %>">Pagar</a>
+        <a href="<%= init_point %>">Pagar la compra</a>
             </section>
         </article>
     </section>

@@ -30,15 +30,15 @@ module.exports = {
             
             const item =  await axios.get(`https://api.mercadolibre.com/items/${id}`)
             
-            const {productId,price,category_id, title,condition,free_shipping,sold_quantity} = item.data
-
+            const {productId,price,category_id, title,condition,free_shipping,sold_quantity,pictures} = item.data
+          
             var preference = {
                 "items": [
                     {
                         "id": productId,
                         "title": title,
                         "currency_id": "ARS",
-                        "picture_url": "https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
+                        "picture_url": pictures[0].url,
                         "description": "Descripción del Item",
                         "category_id": category_id,
                         "quantity": 1,
@@ -61,9 +61,9 @@ module.exports = {
                     }
                 },
                 "back_urls": {
-                    "success": "https://mpintegrationdh.herokuapp.com/products/payment",
-                    "failure": "https://mpintegrationdh.herokuapp.com/products/payment",
-                    "pending": "https://mpintegrationdh.herokuapp.com/products/payment"
+                    "success": "https://mpintegrationdh.herokuapp.com/products/payment/success",
+                    "failure": "https://mpintegrationdh.herokuapp.com/products/payment/failure",
+                    "pending": "https://mpintegrationdh.herokuapp.com/products/payment/pending"
                 },
                 "auto_return": "all",
                 "payment_methods": {
@@ -87,7 +87,6 @@ module.exports = {
           mercadopago.preferences.create(preference)
           .then(function (data) {
             global.id = data.body.id;
-            // res.json(data)
             const init_point = data.body.init_point
             res.render('detail',{
                 productId,
@@ -95,6 +94,7 @@ module.exports = {
                 condition,
                 free_shipping,
                 sold_quantity,
+                pictures,
                 init_point
             })
           }).catch(function (error) {
@@ -109,13 +109,24 @@ module.exports = {
         
     },
     payment :(req, res) => {
-        res.locals.payments = {...req.query}
-        res.render('payment')
+        const status = req.params.status
+        console.log(status);
+        switch (status) {
+            case "success":
+                res.locals.payments = {...req.query}
+                res.render('success')    
+                break;
+            case "failure":
+                res.render('failure')
+                break
+            case "pending":
+                res.render('pending')
+                break
+        }
+        
     },
     webhook: async (req, res) => {
-        // if (req.body.type == "payment") {
             console.log(req.body);
-        // } 
       res.status(200).send("ok")
     }
     
