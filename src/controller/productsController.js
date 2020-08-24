@@ -38,7 +38,7 @@ module.exports = {
                         "id": productId,
                         "title": title,
                         "currency_id": "ARS",
-                        "picture_url": pictures[0].url,
+                        "picture_url": pictures[0].secure_url,
                         "description": "Descripción del Item",
                         "category_id": category_id,
                         "quantity": 1,
