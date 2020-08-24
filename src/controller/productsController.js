@@ -30,40 +30,42 @@ module.exports = {
             
             const item =  await axios.get(`https://api.mercadolibre.com/items/${id}`)
             
-            const {productId,title,condition,free_shipping,sold_quantity} = item.data
-            res.render('detail',{
-                productId,
-                title,
-                condition,
-                free_shipping,
-                sold_quantity
-            })
-            
-        }catch(e){
-            res.json(e.message)
-        }
-        
-    },
-    checkout: (req,res)=> {
-        var preference = {
+            const {productId,price,category_id, title,condition,free_shipping,sold_quantity} = item.data
+
+            var preference = {
                 "items": [
                     {
-                        "id": "item-ID-1234",
-                        "title": "Producto Test",
+                        "id": productId,
+                        "title": title,
                         "currency_id": "ARS",
                         "picture_url": "https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
                         "description": "Descripción del Item",
-                        "category_id": "art",
+                        "category_id": category_id,
                         "quantity": 1,
-                        "unit_price": 75.76
+                        "unit_price": price
                     }
                 ],
-                // "auto_return": "approved",
-                "back_urls": {
-                    "success": "https://www.google.com",
-                    "failure": "http://www.failure.com",
-                    "pending": "http://www.pending.com"
+                "payer":{
+                    "name": "Lalo",
+                    "surname": "Landa",
+                    "email": "test_user_63274575@testuser.com",
+                    "date_created": "",
+                    "phone": {
+                        "area_code": "11",
+                        "number": "22223333"
+                    },
+                    "address": {
+                        "street_name": "false",
+                        "street_number": 123,
+                        "zip_code": "1111"
+                    }
                 },
+                "back_urls": {
+                    "success": "http://localhost:3000/products/payment",
+                    "failure": "http://localhost:3000/products/payment",
+                    "pending": "http://localhost:3000/products/payment"
+                },
+                "auto_return": "all",
                 "payment_methods": {
                     "excluded_payment_methods": [
                         {
@@ -77,45 +79,39 @@ module.exports = {
                     ],
                     "installments": 6
                 },
-                "notification_url": "https://mpintegrationdh.herokuapp.com/products/webhook",
-                "external_reference": "GonzaDH",
+                // "notification_url": "https://webhook.site/a0b78e8d-ed4e-4816-9491-839d2330b50a",
+                "notification_url": "http://localhost:3000/products/webhook",
+                "external_reference": "gonzalo@digitalhouse.com",
         };
         
           mercadopago.preferences.create(preference)
           .then(function (data) {
             global.id = data.body.id;
-            res.redirect(data.body.init_point);
+            // res.json(data)
+            const init_point = data.body.init_point
+            res.render('detail',{
+                productId,
+                title,
+                condition,
+                free_shipping,
+                sold_quantity,
+                init_point
+            })
           }).catch(function (error) {
             res.send(error.message);
-          });
+          });    
+
+            
+            
+        }catch(e){
+            res.json(e.message)
+        }
+        
     },
-    processPay: async (req,res)=> {      
-
-
-        var payment_data = {
-        // id:1,
-        transaction_amount: 165,
-        // name:'producto test',
-        token: req.body.token,
-        // cuantity:1,
-        description: req.body.description,
-        // picture_url:"https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
-        installments: Number(req.body.installments),
-        payment_method_id: req.body.payment_method_id,
-        external_reference:'gonzalo@digitalhouse.com',
-        payer: {
-            email: req.body.email
-        },
-        // integrator_id:'dev_24c65fb163bf11ea96500242ac130004',
-        };
-
-        mercadopago.payment.save(payment_data).then(function (data) {
-           
-            res.json(data);
-            }).catch(function (error) {
-            res.json(error.message);
-            });
-
+    payment :(res, req) => {
+        const status = req.params.status
+        res.locals = {...req.params}
+        res.render('payment', {status})
     },
     webhook: (req, res) => { 
         mercadopago.ipn
@@ -124,7 +120,7 @@ module.exports = {
           console.log(response);
         })
         .then(function(error) {
-          console.log(error);
+          console.log(error, 'fallo hooks');
         });
       
       }

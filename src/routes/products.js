@@ -5,9 +5,7 @@ const productsController = require('../controller/productsController');
 
 router.get('/detail/:id', productsController.detail);
 router.get('/search',productsController.search)
-router.get('/checkout',productsController.checkout)
-router.post('/procesar_pago',productsController.processPay)
 router.post('/webhook',productsController.webhook)
-
+router.get('/payment', productsController.payment)
 
 module.exports = router;
