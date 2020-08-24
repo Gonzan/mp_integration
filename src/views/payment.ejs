@@ -6,9 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    Tu pago esta <%= status %> 
-    <%= locals?.collection_id %>pmi 
-    <%= locals?.external_referenc %> exr
+    <% if (locals.payments) { %>
+        Tu pago esta <%= payments.collection_status %> 
+        <%= payments.collection_id %>pmi 
+        <%= payments.external_reference %> exr
+    <% } %>
       
 </body>
 </html>

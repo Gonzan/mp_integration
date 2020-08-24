@@ -52,7 +52,7 @@ module.exports = {
                     "date_created": "",
                     "phone": {
                         "area_code": "11",
-                        "number": "22223333"
+                        "number": 22223333
                     },
                     "address": {
                         "street_name": "false",
@@ -61,9 +61,9 @@ module.exports = {
                     }
                 },
                 "back_urls": {
-                    "success": "http://localhost:3000/products/payment",
-                    "failure": "http://localhost:3000/products/payment",
-                    "pending": "http://localhost:3000/products/payment"
+                    "success": "https://mpintegrationdh.herokuapp.com/products/payment",
+                    "failure": "https://mpintegrationdh.herokuapp.com/products/payment",
+                    "pending": "https://mpintegrationdh.herokuapp.com/products/payment"
                 },
                 "auto_return": "all",
                 "payment_methods": {
@@ -79,8 +79,8 @@ module.exports = {
                     ],
                     "installments": 6
                 },
-                // "notification_url": "https://webhook.site/a0b78e8d-ed4e-4816-9491-839d2330b50a",
-                "notification_url": "http://localhost:3000/products/webhook",
+                
+                "notification_url": "https://mpintegrationdh.herokuapp.com/products/webhook",
                 "external_reference": "gonzalo@digitalhouse.com",
         };
         
@@ -108,21 +108,14 @@ module.exports = {
         }
         
     },
-    payment :(res, req) => {
-        const status = req.params.status
-        res.locals = {...req.params}
-        res.render('payment', {status})
+    payment :(req, res) => {
+        res.locals.payments = {...req.query}
+        console.log(res.locals.payments);
+        res.render('payment')
     },
-    webhook: (req, res) => { 
-        mercadopago.ipn
-        .manage(req)
-        .then(function(response) {
-          console.log(response);
-        })
-        .then(function(error) {
-          console.log(error, 'fallo hooks');
-        });
-      
-      }
+    webhook: async (req, res) => { 
+       await console.log(req);
+      res.status(200).send("ok")
+    }
     
 }
