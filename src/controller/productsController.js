@@ -113,9 +113,9 @@ module.exports = {
         res.render('payment')
     },
     webhook: async (req, res) => {
-        if (req.body.type == "payment") {
+        // if (req.body.type == "payment") {
             console.log(req.body);
-        } 
+        // } 
       res.status(200).send("ok")
     }
     
