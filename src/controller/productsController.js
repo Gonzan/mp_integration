@@ -110,11 +110,12 @@ module.exports = {
     },
     payment :(req, res) => {
         res.locals.payments = {...req.query}
-        console.log(res.locals.payments);
         res.render('payment')
     },
-    webhook: async (req, res) => { 
-       await console.log(req);
+    webhook: async (req, res) => {
+        if (req.body.type == "payment") {
+            console.log(req.body);
+        } 
       res.status(200).send("ok")
     }
     
