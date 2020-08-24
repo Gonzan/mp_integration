@@ -35,11 +35,11 @@ module.exports = {
             var preference = {
                 "items": [
                     {
-                        "id": productId,
+                        "id": 1234,
                         "title": title,
                         "currency_id": "ARS",
                         "picture_url": pictures[0].secure_url,
-                        "description": "Descripción del Item",
+                        "description": "Dispositivo móvil de Tienda e-commerce",
                         "category_id": category_id,
                         "quantity": 1,
                         "unit_price": price
@@ -55,7 +55,7 @@ module.exports = {
                         "number": 22223333
                     },
                     "address": {
-                        "street_name": "false",
+                        "street_name": "False",
                         "street_number": 123,
                         "zip_code": "1111"
                     }
@@ -65,7 +65,7 @@ module.exports = {
                     "failure": "https://mpintegrationdh.herokuapp.com/products/payment/failure",
                     "pending": "https://mpintegrationdh.herokuapp.com/products/payment/pending"
                 },
-                "auto_return": "all",
+                "auto_return": "approved",
                 "payment_methods": {
                     "excluded_payment_methods": [
                         {
